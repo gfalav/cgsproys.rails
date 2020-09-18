@@ -1,0 +1,57 @@
+<%= form_with(model: proyecto, local: true) do |form| %>
+  <% if proyecto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(proyecto.errors.count, "error") %> prohibited this proyecto from being saved:</h2>
+
+      <ul>
+      <% proyecto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :descripcion %>
+    <%= form.text_field :descripcion, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :comitente %>
+    <%= form.text_field :comitente, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :constructor %>
+    <%= form.text_field :constructor, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :proyectista %>
+    <%= form.text_field :proyectista, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :fproyecto %>
+    <%= form.date_select :fproyecto, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :ubicacion %>
+    <%= form.text_field :ubicacion, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :expediente %>
+    <%= form.text_field :expediente, :class=>'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Enviar", :class=>'btn btn-danger' %>
+  </div>
+<% end %>

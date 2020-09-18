@@ -1,0 +1,12 @@
+<p id="notice"><%%= notice %></p>
+
+<h1><%= plural_table_name.titleize %></h1>
+
+<div class='list-group'>
+  <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+    <%%= link_to 'Show', <%= model_resource_name %>_path(<%= model_resource_name %>), :class=>'list-group-item list-group-item-action' %>
+  <%% end %>
+</div>
+<br>
+
+<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_route_name %>_path, :class=>'btn btn-primary' %>

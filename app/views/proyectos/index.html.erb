@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Proyectos</h1>
+
+<div class='list-group'>
+  <% @proyectos.each do |proyecto| %>
+    <%= link_to proyecto.expediente+' - '+proyecto.comitente+' - '+proyecto.nombre+' - '+proyecto.ubicacion, proyecto_path(proyecto), :class=>'list-group-item list-group-item-action' %>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'Nuevo Proyecto', new_proyecto_path, :class=>'btn btn-primary' %>

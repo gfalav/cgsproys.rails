@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @proyecto.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @proyecto.descripcion %>
+</p>
+
+<p>
+  <strong>Comitente:</strong>
+  <%= @proyecto.comitente %>
+</p>
+
+<p>
+  <strong>Constructor:</strong>
+  <%= @proyecto.constructor %>
+</p>
+
+<p>
+  <strong>Proyectista:</strong>
+  <%= @proyecto.proyectista %>
+</p>
+
+<p>
+  <strong>Fproyecto:</strong>
+  <%= @proyecto.fproyecto %>
+</p>
+
+<p>
+  <strong>Ubicacion:</strong>
+  <%= @proyecto.ubicacion %>
+</p>
+
+<p>
+  <strong>Expediente:</strong>
+  <%= @proyecto.expediente %>
+</p>
+
+<%= link_to 'Edit', edit_proyecto_path(@proyecto), :class=>'btn btn-warning' %> |
+<%= link_to 'Back', proyectos_path, :class=>'btn btn-secondary' %>
