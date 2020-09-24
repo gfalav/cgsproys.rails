@@ -41,4 +41,5 @@
 </p>
 
 <%= link_to 'Edit', edit_proyecto_path(@proyecto), :class=>'btn btn-warning' %> |
-<%= link_to 'Back', proyectos_path, :class=>'btn btn-secondary' %>
+<%= link_to 'Back', proyectos_path, :class=>'btn btn-secondary' %> |
+<%= link_to 'Puntos', puntos_path(:proyecto_id => @proyecto.id), :class=>'btn btn-info' %>

@@ -1,0 +1,52 @@
+<%= form_with(model: punto, local: true) do |form| %>
+  <% if punto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(punto.errors.count, "error") %> prohibited this punto from being saved:</h2>
+
+      <ul>
+      <% punto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :proyecto_id %>
+    <%= form.text_field :proyecto_id, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :secuencia %>
+    <%= form.text_field :secuencia, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :lat %>
+    <%= form.text_field :lat, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :long %>
+    <%= form.text_field :long, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :angulo %>
+    <%= form.text_field :angulo, :class=>'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :distancia %>
+    <%= form.text_field :distancia, :class=>'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Enviar", :class=>'btn btn-danger' %>
+  </div>
+<% end %>

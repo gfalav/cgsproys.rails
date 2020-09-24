@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Puntos</h1>
+
+<div class='list-group'>
+  <% @puntos.each do |punto| %>
+    <%= link_to 'Show', punto_path(punto), :class=>'list-group-item list-group-item-action' %>
+  <% end %>
+</div>
+<br>
+
+<%= link_to 'New Punto', new_punto_path(:proyecto_id=> @proyecto_id), :class=>'btn btn-primary' %>
