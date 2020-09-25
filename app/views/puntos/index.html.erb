@@ -2,11 +2,75 @@
 
 <h1>Puntos</h1>
 
-<div class='list-group'>
-  <% @puntos.each do |punto| %>
-    <%= link_to 'Show', punto_path(punto), :class=>'list-group-item list-group-item-action' %>
-  <% end %>
-</div>
-<br>
+<div class="container">
+	<div class="row">
+		<div class="col-8">
+			<div id="map"></div>
+		</div>
+		<div>
+			<div class='list-group'>
+			  <% @puntos.each do |punto| %>
+			    <%= link_to punto.secuencia.to_s + ' - ' + punto.nombre, punto_path(punto), :class=>'list-group-item list-group-item-action' %>
+			  <% end %>
+			</div>
+			<br>
 
-<%= link_to 'New Punto', new_punto_path(:proyecto_id=> @proyecto_id), :class=>'btn btn-primary' %>
+			<%= link_to 'New Punto', new_punto_path(:proyecto_id=> @proyecto_id), :class=>'btn btn-primary' %>
+		</div>
+	</div>
+	Puntos: <%= raw(@puntos.to_json) %>
+</div>
+
+
+
+<script type="text/javascript">
+
+	function initMap() {
+	  var uluru = {lat: -33.306618, lng: -66.336425};
+	  var map = new google.maps.Map(document.getElementById('map'), {zoom: 11, center: uluru});
+
+	  map.addListener('click', function(e) {
+	    grabapunto(e.latLng, map);
+	  });
+
+	  dibujatraza(<%= raw(@puntos.to_json) %>, map);
+	}
+
+	function grabapunto(latLng, map) {
+		proyecto_id = <%= @proyecto_id %>
+		$.ajax({
+			method: "POST",
+			url: "../puntos/indajax",
+			data: "lat=" + latLng.lat() + "&long=" + latLng.lng() + "&proyecto_id=" + proyecto_id,
+			dataType: 'json',
+			success: function(puntos){ 
+			   $(location).attr('href','../puntos?proyecto_id=' + proyecto_id);
+			}
+		});
+	}
+
+	function dibujatraza(puntos, map){
+		var puntosarr = [];
+		var mylatlng = new google.maps.LatLng(-33.30,-66.33);
+		
+		puntos.forEach(function( p ) {
+			mylatlng = new google.maps.LatLng(p.lat, p.long);
+			var marker = new google.maps.Marker({
+			    position: mylatlng, 
+			    map: map, 
+			    title: p.nombre
+			});  	
+			puntosarr.push(mylatlng);
+		});
+		map.setCenter(mylatlng);
+		var traza = new google.maps.Polyline({
+		    path: puntosarr,
+		    strokeColor: "#0000FF",
+		    strokeOpacity: 1.0,
+		    strokeWeight: 2
+		});
+	  	traza.setMap(map);
+	}
+
+</script>
+<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXocR-JlBcUDUCFMPvpIXqnH6r4-3DIOU&callback=initMap"></script>
