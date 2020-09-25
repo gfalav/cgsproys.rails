@@ -32,6 +32,10 @@ body {
 }
 
 #map {
-        height: 560px;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
+    height: 560px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+}
+
+.puntos a {
+	font-size: .8rem;
 }

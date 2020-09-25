@@ -1,16 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Puntos</h1>
+<h1>Puntos Terminales, Angulares y Especiales</h1>
 
 <div class="container">
 	<div class="row">
 		<div class="col-8">
 			<div id="map"></div>
 		</div>
-		<div>
-			<div class='list-group'>
+		<div class="col">
+			<h3>Puntos de la traza</h3>
+			<div class='list-group puntos'>
 			  <% @puntos.each do |punto| %>
-			    <%= link_to punto.secuencia.to_s + ' - ' + punto.nombre, punto_path(punto), :class=>'list-group-item list-group-item-action' %>
+			    <%= link_to puntostr(punto), punto_path(punto), :class=>'list-group-item list-group-item-action' %>
 			  <% end %>
 			</div>
 			<br>
@@ -18,7 +19,6 @@
 			<%= link_to 'New Punto', new_punto_path(:proyecto_id=> @proyecto_id), :class=>'btn btn-primary' %>
 		</div>
 	</div>
-	Puntos: <%= raw(@puntos.to_json) %>
 </div>
 
 
@@ -37,7 +37,7 @@
 	}
 
 	function grabapunto(latLng, map) {
-		proyecto_id = <%= @proyecto_id %>
+		proyecto_id = <%= @proyecto_id %>;
 		$.ajax({
 			method: "POST",
 			url: "../puntos/indajax",
