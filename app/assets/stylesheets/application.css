@@ -39,3 +39,8 @@ body {
 .puntos a {
 	font-size: .8rem;
 }
+
+.puntostitle {
+	text-align: center;
+	padding: 10px;
+}

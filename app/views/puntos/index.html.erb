@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Puntos Terminales, Angulares y Especiales</h1>
+<div class="row">
+	<div class="col"><h1 class="puntostitle">Puntos Terminales, Angulares y Especiales</h1></div>	
+</div>
+
+
 
 <div class="container">
 	<div class="row">
@@ -27,7 +31,17 @@
 
 	function initMap() {
 	  var uluru = {lat: -33.306618, lng: -66.336425};
-	  var map = new google.maps.Map(document.getElementById('map'), {zoom: 11, center: uluru});
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	  	zoom: 15, 
+	  	center: uluru, 
+	  	mapTypeId: 'satellite',
+	  	zoomControl: false,
+		mapTypeControl: true,
+		scaleControl: true,
+		streetViewControl: true,
+		rotateControl: true,
+		fullscreenControl: true
+	});
 
 	  map.addListener('click', function(e) {
 	    grabapunto(e.latLng, map);
@@ -52,12 +66,15 @@
 	function dibujatraza(puntos, map){
 		var puntosarr = [];
 		var mylatlng = new google.maps.LatLng(-33.30,-66.33);
-		
+		var iconpath = '<%= image_url('piquete.png') %>';
+		console.log(iconpath);
+
 		puntos.forEach(function( p ) {
 			mylatlng = new google.maps.LatLng(p.lat, p.long);
 			var marker = new google.maps.Marker({
 			    position: mylatlng, 
 			    map: map, 
+			    icon: iconpath,
 			    title: p.nombre
 			});  	
 			puntosarr.push(mylatlng);
@@ -65,7 +82,7 @@
 		map.setCenter(mylatlng);
 		var traza = new google.maps.Polyline({
 		    path: puntosarr,
-		    strokeColor: "#0000FF",
+		    strokeColor: "#691307",
 		    strokeOpacity: 1.0,
 		    strokeWeight: 2
 		});

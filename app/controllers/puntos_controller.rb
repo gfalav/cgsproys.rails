@@ -8,7 +8,6 @@ class PuntosController < ApplicationController
       newpunto.long = params[:long].to_f
       newpunto.proyecto_id = params[:proyecto_id].to_i
       newpunto.secuencia = Punto.where(:proyecto_id => params[:proyecto_id]).maximum(:secuencia).to_i + 10
-      byebug
       newpunto.nombre = "Punto " + newpunto.secuencia.to_i.to_s
       newpunto.distancia = 0
       newpunto.angulo = 0
