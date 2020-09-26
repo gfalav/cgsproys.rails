@@ -123,9 +123,10 @@ class PuntosController < ApplicationController
   # DELETE /puntos/1
   # DELETE /puntos/1.json
   def destroy
+    @proyecto_id = @punto.proyecto_id
     @punto.destroy
     respond_to do |format|
-      format.html { redirect_to puntos_url, notice: 'Punto was successfully destroyed.' }
+      format.html { redirect_to controller: "puntos", action: "index", proyecto_id: @proyecto_id }
       format.json { head :no_content }
     end
   end
